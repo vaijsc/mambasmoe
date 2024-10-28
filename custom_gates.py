@@ -7,7 +7,7 @@ import torch.nn.functional as F
 
 import pdb
 import numpy as np
-from fmoe.gates.base_gate import BaseGate
+from gates.base_gate import BaseGate
 
 __all__ = [
     "CustomNaiveGate_Balance_SMoE",

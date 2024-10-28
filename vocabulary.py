@@ -60,7 +60,7 @@ class Vocab(object):
             return symbols
 
     def count_file(self, path, verbose=False, add_eos=False):
-        if verbose:
+        if verbose:  # dài dòng
             print("counting file {} ...".format(path))
         assert os.path.exists(path)
 
