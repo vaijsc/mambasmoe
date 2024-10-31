@@ -217,7 +217,7 @@ PARAMS_CONFIG = {
         },
         "--nbatches": {
             "type": int,
-            "default": 1000,
+            "default": 900, #1000 - CUDA out of memory
             "help": "number of batches in each iteration",
             "dest": "nb_batches_per_iter",
         },
