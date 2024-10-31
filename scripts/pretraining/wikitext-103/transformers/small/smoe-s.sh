@@ -17,7 +17,7 @@ args="
 --lr 0.0007 \
 --lr-warmup 3000 \
 --niter 60 \
---batch-sz 8 \
+--batch-sz 32 \
 --batch-split 4 \
 --nbatches 1000 \
 --checkpoint checkpoints/wikitext-103/transformers-s/smoe/smoe.pt \
