@@ -71,7 +71,7 @@ def launch(
         num_classes=num_classes,
         adapt_span_params=adapt_span_params,
     )
-    print(model)
+    # print(model)
     if distributed:
         local_rank = env_params["local_rank"]
         model = model.to(device)
