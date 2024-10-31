@@ -1,7 +1,7 @@
 mkdir -p checkpoints/wikitext-103/transformers-s/smoe
 
 args="
---data /home/anhnd81/.cache/wikitext-103
+--data /lustre/scratch/client/vinai/users/ducna22/data/wikitext-103
 --base_arch transformer \
 --architecture sgsgsg \
 --gate_name smoe \
@@ -24,8 +24,9 @@ args="
 "
 
 #--data /home/ubuntu/workspace/dataset/wikitext-103 \
+# --data /home/anhnd81/.cache/wikitext-103
 echo "Training ..."
-python -m torch.distributed.launch --nproc_per_node=1 --master_port=1234 --use_env train.py $args
+python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 --use_env train.py $args
 
 echo "Evaluation ..."
 python train.py $args --full-eval-mode --batch-sz 8
