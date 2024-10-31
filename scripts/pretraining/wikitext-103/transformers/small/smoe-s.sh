@@ -24,8 +24,8 @@ args="
 "
 
 #--data /home/ubuntu/workspace/dataset/wikitext-103 \
-# --data /home/anhnd81/.cache/wikitext-103
-# bs 64 - CUDA out of memory
+# --data /home/anhnd81/.cache/wikitext-103 bs 64 - CUDA out of memory
+
 echo "Training ..."
 python -m torch.distributed.launch --nproc_per_node=4 --master_port=1234 --use_env train.py $args
 
