@@ -1,0 +1,222 @@
+Training Parameters:
+ {'batch_size': 96, 'batch_split': 2, 'nb_batches_per_iter': 1000, 'nb_iter': 60, 'checkpoint_path': 'checkpoints/wikitext-103/transformers-s/smoe/smoe.pt', 'pretrained_weight': '', 'full_eval_mode': False}
+Models Parameters:
+ {'hidden_size': 128, 'inner_hidden_size': 128, 'nb_layers': 3, 'block_size': 256, 'nb_heads': 8, 'attn_span': 256, 'dropout': 0.7, 'architecture': 'sgsgsg', 'base_arch': 'transformer', 'smoe_dropout': False, 'optimal_policy': False, 'load_balance': 0.01, 'moe_top_k': 2, 'freq': 0.03, 'freq_type': 'fix', 'alpha': 1.0, 'gate_name': 'smoe', 'act_experts': 'shuffle', 'g_blance': False, 'opt_blance': False, 'combine_gate': False, 'opt_loss': 'mse'}
+2024-10-31 06:50:10.082097
+DataParallel(
+  (module): TransformerSeq(
+    (in_emb): Embedding(267735, 128)
+    (out_emb): Linear(in_features=128, out_features=267735, bias=True)
+    (layers): ModuleList(
+      (0-2): 3 x TransformerSeqLayer(
+        (attn): MultiHeadSeqAttention(
+          (attn): SeqAttention(
+            (dropout): Dropout(p=0.7, inplace=False)
+          )
+          (proj_query): Linear(in_features=128, out_features=128, bias=False)
+          (proj_out): Linear(in_features=128, out_features=128, bias=False)
+          (proj_val): Linear(in_features=128, out_features=128, bias=False)
+          (proj_key): Linear(in_features=128, out_features=128, bias=False)
+        )
+        (smoe): CustomizedMoEPositionwiseFF(
+          (gate): CustomNaiveGate_Balance_SMoE(
+            (gate): Linear(in_features=128, out_features=16, bias=True)
+          )
+          (experts): _Expert(
+            (htoh4): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (h4toh): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (activation): Sequential(
+              (0): ReLU()
+              (1): Dropout(p=0.7, inplace=False)
+            )
+          )
+          (layer_norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.7, inplace=False)
+        )
+        (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+  )
+)
+Total of Parameters: 70603015
+Total of Trainable Parameters: 70603015
+Training Parameters:
+ {'batch_size': 8, 'batch_split': 2, 'nb_batches_per_iter': 1000, 'nb_iter': 60, 'checkpoint_path': 'checkpoints/wikitext-103/transformers-s/smoe/smoe.pt', 'pretrained_weight': '', 'full_eval_mode': True}
+Models Parameters:
+ {'hidden_size': 128, 'inner_hidden_size': 128, 'nb_layers': 3, 'block_size': 256, 'nb_heads': 8, 'attn_span': 256, 'dropout': 0.7, 'architecture': 'sgsgsg', 'base_arch': 'transformer', 'smoe_dropout': False, 'optimal_policy': False, 'load_balance': 0.01, 'moe_top_k': 2, 'freq': 0.03, 'freq_type': 'fix', 'alpha': 1.0, 'gate_name': 'smoe', 'act_experts': 'shuffle', 'g_blance': False, 'opt_blance': False, 'combine_gate': False, 'opt_loss': 'mse'}
+2024-10-31 06:50:40.769572
+DataParallel(
+  (module): TransformerSeq(
+    (in_emb): Embedding(267735, 128)
+    (out_emb): Linear(in_features=128, out_features=267735, bias=True)
+    (layers): ModuleList(
+      (0-2): 3 x TransformerSeqLayer(
+        (attn): MultiHeadSeqAttention(
+          (attn): SeqAttention(
+            (dropout): Dropout(p=0.7, inplace=False)
+          )
+          (proj_query): Linear(in_features=128, out_features=128, bias=False)
+          (proj_out): Linear(in_features=128, out_features=128, bias=False)
+          (proj_val): Linear(in_features=128, out_features=128, bias=False)
+          (proj_key): Linear(in_features=128, out_features=128, bias=False)
+        )
+        (smoe): CustomizedMoEPositionwiseFF(
+          (gate): CustomNaiveGate_Balance_SMoE(
+            (gate): Linear(in_features=128, out_features=16, bias=True)
+          )
+          (experts): _Expert(
+            (htoh4): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (h4toh): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (activation): Sequential(
+              (0): ReLU()
+              (1): Dropout(p=0.7, inplace=False)
+            )
+          )
+          (layer_norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.7, inplace=False)
+        )
+        (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+  )
+)
+Total of Parameters: 70603015
+Total of Trainable Parameters: 70603015
+Val: 316729.293 PPL
+Test: 316385.940 PPL
+Training Parameters:
+ {'batch_size': 8, 'batch_split': 2, 'nb_batches_per_iter': 1000, 'nb_iter': 60, 'checkpoint_path': 'checkpoints/wikitext-103/transformers-s/smoe/smoe.pt', 'pretrained_weight': '', 'full_eval_mode': True}
+Models Parameters:
+ {'hidden_size': 128, 'inner_hidden_size': 128, 'nb_layers': 3, 'block_size': 256, 'nb_heads': 8, 'attn_span': 256, 'dropout': 0.7, 'architecture': 'sgsgsg', 'base_arch': 'transformer', 'smoe_dropout': False, 'optimal_policy': False, 'load_balance': 0.01, 'moe_top_k': 2, 'freq': 0.03, 'freq_type': 'fix', 'alpha': 1.0, 'gate_name': 'smoe', 'act_experts': 'shuffle', 'g_blance': False, 'opt_blance': False, 'combine_gate': False, 'opt_loss': 'mse'}
+2024-10-31 06:53:20.407564
+DataParallel(
+  (module): TransformerSeq(
+    (in_emb): Embedding(267735, 128)
+    (out_emb): Linear(in_features=128, out_features=267735, bias=True)
+    (layers): ModuleList(
+      (0-2): 3 x TransformerSeqLayer(
+        (attn): MultiHeadSeqAttention(
+          (attn): SeqAttention(
+            (dropout): Dropout(p=0.7, inplace=False)
+          )
+          (proj_query): Linear(in_features=128, out_features=128, bias=False)
+          (proj_out): Linear(in_features=128, out_features=128, bias=False)
+          (proj_val): Linear(in_features=128, out_features=128, bias=False)
+          (proj_key): Linear(in_features=128, out_features=128, bias=False)
+        )
+        (smoe): CustomizedMoEPositionwiseFF(
+          (gate): CustomNaiveGate_Balance_SMoE(
+            (gate): Linear(in_features=128, out_features=16, bias=True)
+          )
+          (experts): _Expert(
+            (htoh4): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (h4toh): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (activation): Sequential(
+              (0): ReLU()
+              (1): Dropout(p=0.7, inplace=False)
+            )
+          )
+          (layer_norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.7, inplace=False)
+        )
+        (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+  )
+)
+Total of Parameters: 70603015
+Total of Trainable Parameters: 70603015
+Training Parameters:
+ {'batch_size': 96, 'batch_split': 2, 'nb_batches_per_iter': 1000, 'nb_iter': 60, 'checkpoint_path': 'checkpoints/wikitext-103/transformers-s/smoe/smoe.pt', 'pretrained_weight': '', 'full_eval_mode': False}
+Models Parameters:
+ {'hidden_size': 128, 'inner_hidden_size': 128, 'nb_layers': 3, 'block_size': 256, 'nb_heads': 8, 'attn_span': 256, 'dropout': 0.7, 'architecture': 'sgsgsg', 'base_arch': 'transformer', 'smoe_dropout': False, 'optimal_policy': False, 'load_balance': 0.01, 'moe_top_k': 2, 'freq': 0.03, 'freq_type': 'fix', 'alpha': 1.0, 'gate_name': 'smoe', 'act_experts': 'shuffle', 'g_blance': False, 'opt_blance': False, 'combine_gate': False, 'opt_loss': 'mse'}
+2024-10-31 06:54:21.532388
+DataParallel(
+  (module): TransformerSeq(
+    (in_emb): Embedding(267735, 128)
+    (out_emb): Linear(in_features=128, out_features=267735, bias=True)
+    (layers): ModuleList(
+      (0-2): 3 x TransformerSeqLayer(
+        (attn): MultiHeadSeqAttention(
+          (attn): SeqAttention(
+            (dropout): Dropout(p=0.7, inplace=False)
+          )
+          (proj_query): Linear(in_features=128, out_features=128, bias=False)
+          (proj_out): Linear(in_features=128, out_features=128, bias=False)
+          (proj_val): Linear(in_features=128, out_features=128, bias=False)
+          (proj_key): Linear(in_features=128, out_features=128, bias=False)
+        )
+        (smoe): CustomizedMoEPositionwiseFF(
+          (gate): CustomNaiveGate_Balance_SMoE(
+            (gate): Linear(in_features=128, out_features=16, bias=True)
+          )
+          (experts): _Expert(
+            (htoh4): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (h4toh): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (activation): Sequential(
+              (0): ReLU()
+              (1): Dropout(p=0.7, inplace=False)
+            )
+          )
+          (layer_norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.7, inplace=False)
+        )
+        (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+  )
+)
+Total of Parameters: 70603015
+Total of Trainable Parameters: 70603015
+Training Parameters:
+ {'batch_size': 96, 'batch_split': 2, 'nb_batches_per_iter': 1000, 'nb_iter': 60, 'checkpoint_path': 'checkpoints/wikitext-103/transformers-s/smoe/smoe.pt', 'pretrained_weight': '', 'full_eval_mode': False}
+Models Parameters:
+ {'hidden_size': 128, 'inner_hidden_size': 128, 'nb_layers': 3, 'block_size': 256, 'nb_heads': 8, 'attn_span': 256, 'dropout': 0.7, 'architecture': 'sgsgsg', 'base_arch': 'transformer', 'smoe_dropout': False, 'optimal_policy': False, 'load_balance': 0.01, 'moe_top_k': 2, 'freq': 0.03, 'freq_type': 'fix', 'alpha': 1.0, 'gate_name': 'smoe', 'act_experts': 'shuffle', 'g_blance': False, 'opt_blance': False, 'combine_gate': False, 'opt_loss': 'mse'}
+2024-10-31 06:54:22.350707
+DataParallel(
+  (module): TransformerSeq(
+    (in_emb): Embedding(267735, 128)
+    (out_emb): Linear(in_features=128, out_features=267735, bias=True)
+    (layers): ModuleList(
+      (0-2): 3 x TransformerSeqLayer(
+        (attn): MultiHeadSeqAttention(
+          (attn): SeqAttention(
+            (dropout): Dropout(p=0.7, inplace=False)
+          )
+          (proj_query): Linear(in_features=128, out_features=128, bias=False)
+          (proj_out): Linear(in_features=128, out_features=128, bias=False)
+          (proj_val): Linear(in_features=128, out_features=128, bias=False)
+          (proj_key): Linear(in_features=128, out_features=128, bias=False)
+        )
+        (smoe): CustomizedMoEPositionwiseFF(
+          (gate): CustomNaiveGate_Balance_SMoE(
+            (gate): Linear(in_features=128, out_features=16, bias=True)
+          )
+          (experts): _Expert(
+            (htoh4): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (h4toh): FMoELinear(num_expert=16, in_features=128,         out_features=128, bias=True, rank=0)
+            (activation): Sequential(
+              (0): ReLU()
+              (1): Dropout(p=0.7, inplace=False)
+            )
+          )
+          (layer_norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.7, inplace=False)
+        )
+        (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (norm3): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+  )
+)
+Total of Parameters: 70603015
+Total of Trainable Parameters: 70603015
