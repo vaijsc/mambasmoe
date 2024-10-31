@@ -20,7 +20,6 @@ def ensure_comm(t, comm):
 def get_moe_group():
     return _moe_group
 
-
 def count_by_gate(gate, num_expert, world_size, require_pos=True):
     with torch.no_grad():
         local_expert_count = torch.zeros(
