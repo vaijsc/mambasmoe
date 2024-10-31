@@ -17,7 +17,7 @@ args="
 --lr 0.0007 \
 --lr-warmup 3000 \
 --niter 60 \
---batch-sz 96 \
+--batch-sz 64 \ 
 --batch-split 2 \
 --nbatches 1000 \
 --checkpoint checkpoints/wikitext-103/transformers-s/smoe/smoe.pt \
@@ -25,6 +25,7 @@ args="
 
 #--data /home/ubuntu/workspace/dataset/wikitext-103 \
 # --data /home/anhnd81/.cache/wikitext-103
+# bs 64 - CUDA out of memory
 echo "Training ..."
 python -m torch.distributed.launch --nproc_per_node=4 --master_port=1234 --use_env train.py $args
 
