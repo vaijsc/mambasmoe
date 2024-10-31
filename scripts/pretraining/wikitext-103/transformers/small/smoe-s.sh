@@ -1,7 +1,7 @@
 mkdir -p checkpoints/wikitext-103/transformers-s/smoe
 
 args="
---data /lustre/scratch/client/vinai/users/ducna22/data/wikitext-103
+--data /lustre/scratch/client/vinai/users/ducna22/data/wikitext-103 \
 --base_arch transformer \
 --architecture sgsgsg \
 --gate_name smoe \
@@ -17,15 +17,14 @@ args="
 --lr 0.0007 \
 --lr-warmup 3000 \
 --niter 60 \
---batch-sz 64 \ 
+--batch-sz 96 \
 --batch-split 2 \
 --nbatches 1000 \
 --checkpoint checkpoints/wikitext-103/transformers-s/smoe/smoe.pt \
 "
 
 #--data /home/ubuntu/workspace/dataset/wikitext-103 \
-# --data /home/anhnd81/.cache/wikitext-103 bs 64 - CUDA out of memory
-
+# --data /home/anhnd81/.cache/wikitext-103
 echo "Training ..."
 python -m torch.distributed.launch --nproc_per_node=4 --master_port=1234 --use_env train.py $args
 
