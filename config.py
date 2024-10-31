@@ -205,7 +205,7 @@ PARAMS_CONFIG = {
     "trainer_params": {
         "--batch-sz": {
             "type": int,
-            "default": 64,
+            "default": 96, #96 - CUDA out of memory
             "help": "batch size",
             "dest": "batch_size",
         },
@@ -217,7 +217,7 @@ PARAMS_CONFIG = {
         },
         "--nbatches": {
             "type": int,
-            "default": 900, #1000 - CUDA out of memory
+            "default": 1000, #1000 - CUDA out of memory
             "help": "number of batches in each iteration",
             "dest": "nb_batches_per_iter",
         },
