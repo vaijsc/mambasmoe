@@ -17,7 +17,7 @@ args="
 --lr 0.0007 \
 --lr-warmup 3000 \
 --niter 60 \
---batch-sz 16 \
+--batch-sz 32 \
 --batch-split 2 \
 --nbatches 1000 \
 --checkpoint checkpoints/wikitext-103/transformers-s/smoe/smoe.pt \
@@ -26,7 +26,7 @@ args="
 #--data /home/ubuntu/workspace/dataset/wikitext-103 \
 # --data /home/anhnd81/.cache/wikitext-103
 echo "Training ..."
-python -m torch.distributed.launch --nproc_per_node=4 --master_port=1234 --use_env train.py $args
+python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 --use_env train.py $args
 
 echo "Evaluation ..."
 python train.py $args --full-eval-mode --batch-sz 8
